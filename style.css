@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #111, #222);
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 800px;
+  background: #1e1e1e;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+.title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 25px;
+  color: #fbc531;
+}
+
+.player-info {
+  margin-top: 20px;
+  background: #2c2c2c;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.player-info h2 {
+  margin-bottom: 15px;
+  color: #00a8ff;
+}
+
+.stat {
+  margin: 8px 0;
+  font-size: 1rem;
+  padding: 6px 0;
+  border-bottom: 1px solid #333;
+}
