@@ -1,26 +1,23 @@
-async function loadPlayer() {
-  const playerDiv = document.getElementById("playerInfo");
+async function loadLeaderboard() {
+    const container = document.getElementById("leaderboard");
+    container.innerHTML = "Loading...";
 
-  try {
-    const res = await fetch("/player");
-    const data = await res.json();
+    try {
+        const response = await fetch("http://localhost:3000/leaderboard");
+        const data = await response.json();
 
-    if (data.error || data.reason) {
-      playerDiv.textContent = "⚠️ Error loading data.";
-      return;
+        container.innerHTML = "";
+        data.forEach((player, index) => {
+            const div = document.createElement("div");
+            div.classList.add("player");
+            div.innerHTML = `<span>#${index + 1} ${player.name}</span><span>${player.trophies} 🏆</span>`;
+            container.appendChild(div);
+        });
+
+    } catch (err) {
+        container.innerHTML = "Failed to load leaderboard.";
+        console.error(err);
     }
-
-    playerDiv.innerHTML = `
-      <h2>${data.name || "N/A"} (${data.tag || "N/A"})</h2>
-      <div class="stat">Trophies: ${data.trophies ?? "N/A"}</div>
-      <div class="stat">Highest Trophies: ${data.highestTrophies ?? "N/A"}</div>
-      <div class="stat">Exp Level: ${data.expLevel ?? "N/A"}</div>
-      <div class="stat">Club: ${data.club ? data.club.name : "None"}</div>
-    `;
-  } catch {
-    playerDiv.textContent = "⚠️ Error loading data.";
-  }
 }
 
-loadPlayer();
-setInterval(loadPlayer, 30000);
+loadLeaderboard();
